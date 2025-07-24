@@ -1,0 +1,130 @@
+# Systemd integration for AI services
+
+# /etc/systemd/system/jaymi-watcher.service
+"""
+[Unit]
+Description=Jaymi Folder Watcher Service
+After=jaymi-core.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/jaymi-watcher
+Environment="WATCH_DIRS=/home/%u/gpt_prompts:/home/%u/scripts"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+"""
+
+# Watcher implementation
+class JaymiWatcher:
+    """Monitors folders for AI processing"""
+    
+    def __init__(self):
+        self.watch_dirs = os.environ['WATCH_DIRS'].split(':')
+        self.inotify = inotify.adapters.Inotify()
+        
+    def watch_loop(self):
+        """Main monitoring loop"""
+        for watch_dir in self.watch_dirs:
+            self.inotify.add_watch(watch_dir)
+            
+        for event in self.inotify.event_gen():
+            if event and event[0].mask & inotify.constants.IN_CREATE:
+                self.process_new_file(event[2])
+Build System & Toolchain
+Recommended Stack
+makefile
+# Makefile for chuckOS components
+
+CC = gcc
+RUSTC = rustc
+PYTHON = python3
+
+# Core components in Rust for safety
+RUST_COMPONENTS = vault-manager security-layer
+
+# Performance-critical in C
+C_COMPONENTS = boot-hooks audio-engine
+
+# AI layer in Python for flexibility
+PYTHON_COMPONENTS = jaymi-core nl-parser personality-engine
+
+# Build targets
+all: rust-build c-build python-package iso-build
+
+rust-build:
+    cargo build --release --manifest-path=rust/Cargo.toml
+
+c-build:
+    $(CC) -O3 -Wall -o bin/chuck-boot src/boot/*.c
+    
+python-package:
+    $(PYTHON) -m pip install --target=rootfs/usr/local/lib/python3.11 -r requirements.txt
+    
+iso-build:
+    mkarchiso -v -w work -o out chuckos-profile
+Testing Framework
+python
+# Test suite for AI components
+
+import pytest
+from unittest.mock import Mock, patch
+
+class TestJaymiCore:
+    """Core AI engine tests"""
+    
+    @pytest.fixture
+    def mock_vault(self):
+        with patch('jaymi.MemoryVault') as mock:
+            yield mock
+            
+    def test_natural_language_parsing(self, mock_vault):
+        """Test NL to command translation"""
+        parser = NaturalLanguageParser()
+        
+        test_cases = [
+            ("I wish my VPN would connect", "openvpn --config default.ovpn"),
+            ("Show me my secure files", "chuck-vault list"),
+            ("Forget the last hour", "chuck-vault wipe --time 1h")
+        ]
+        
+        for nl_input, expected_cmd in test_cases:
+            result = parser.parse_input(nl_input)
+            assert result.command == expected_cmd
+            
+    def test_emotional_response(self):
+        """Test personality adaptation"""
+        engine = PersonalityEngine()
+        
+        # Simulate chaotic user
+        chaotic_inputs = ["HELP!!!", "nothing works", "this is broken"]
+        for input in chaotic_inputs:
+            response = engine.generate_response(input, {})
+            assert engine.emotional_state.sass_level > 0.5
+Deployment Architecture
+yaml
+# docker-compose.yml for development environment
+
+version: '3.8'
+
+services:
+  chuckos-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./src:/chuckos/src
+      - ./rootfs:/chuckos/rootfs
+    privileged: true
+    devices:
+      - /dev/kvm
+      
+  test-qemu:
+    image: qemu:latest
+    command: |
+      qemu-system-x86_64 
+      -m 4G 
+      -enable-kvm 
+      -cdrom /iso/chuckos-v1.iso
+      -vnc :1
