@@ -122,12 +122,12 @@ async def search_files(
             file_paths=request.file_paths or []
         )
         
-        return FileSearchResponse(
-            query=request.query,
-            results=results,
-            total_found=len(results),
-            search_time=results.get('search_time', 0)
-        )
+        return {
+            "query": request.query,
+            "results": results.get("results", []),
+            "total_found": results.get("total_found", 0),
+            "search_time": results.get("search_time", 0)
+        }
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
