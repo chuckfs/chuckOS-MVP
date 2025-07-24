@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChuckOS - The World's First AI Operating System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .hero .tagline {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            color: #FFD700;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .cta-secondary {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+        }
+        
+        .price {
+            font-size: 3rem;
+            color: #FFD700;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 100px 0;
+        }
+        
+        .demo-video {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .features {
+            background: #f8f9fa;
+            padding: 100px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .social-proof {
+            background: #2c3e50;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .urgency {
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ChuckOS</h1>
+                <p class="subtitle">The World's First AI Operating System</p>
+                <p class="tagline">"Hey Jaymi, find my photos" - And she actually does it.</p>
+                
+                <div class="price">$299</div>
+                <p style="margin-bottom: 2rem;">Limited Early Access - Usually $999</p>
+                
+                <a href="#order" class="cta-button">GET EARLY ACCESS</a>
+                <a href="#demo" class="cta-button cta-secondary">WATCH DEMO</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 3rem;">See ChuckOS in Action</h2>
+            
+            <div class="demo-video">
+                <div style="padding: 100px; text-align: center; color: white;">
+                    <h3>🎬 Your Viral Demo Video Goes Here</h3>
+                    <p style="margin-top: 20px;">Upload your screen recording showing:</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>"Hey Jaymi, find my photos" → Instant results</li>
+                        <li>System analysis with real metrics</li>
+                        <li>Emotional AI responses</li>
+                        <li>Natural language file management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">Revolutionary Features</h2>
+            <p style="text-align: center; font-size: 1.5rem; opacity: 0.7;">Built by one person. Works like magic.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Smart Memory</h3>
+                    <p>Jaymi learns your preferences and adapts to your workflow. She remembers what you like and gets smarter every day.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Natural Voice</h3>
+                    <p>Just talk to your computer naturally. "Find my vacation photos" → She finds them instantly. No more clicking through folders.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>File Intelligence</h3>
+                    <p>Jaymi organizes your files automatically and finds anything you need in seconds. Your computer finally makes sense.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>System Control</h3>
+                    <p>Monitor performance, optimize your system, and get health reports. Jaymi keeps your computer running perfectly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful Interface</h3>
+                    <p>Dynamic themes that change with Jaymi's mood. Professional design that makes computing feel like the future.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Everything runs locally. No data collection, no cloud dependency. Your files and conversations stay yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">What People Are Saying</h2>
+            
+            <div class="testimonial">
+                "I've been waiting my whole career for someone to build this. Chuck just changed computing forever."
+            </div>
+            <p><strong>- Tech Executive (Beta Tester)</strong></p>
+            
+            <div style="margin-top: 3rem;">
+                <p style="font-size: 1.5rem; margin-bottom: 1rem;">🌟 Featured on:</p>
+                <p style="opacity: 0.8;">TechCrunch • Product Hunt • Hacker News • Reddit</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="urgency">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">⚡ Limited Early Access</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Only 100 licenses available at this price</p>
+            
+            <div class="countdown">
+                <span id="countdown-timer">72:00:00</span>
+            </div>
+            <p>Until price increases to $999</p>
+            
+            <div style="margin-top: 3rem;">
+                <a href="#order" class="cta-button" style="font-size: 2rem; padding: 25px 50px;">
+                    SECURE YOUR LICENSE - $299
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="order" style="background: white; padding: 100px 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 2rem;">Get ChuckOS Early Access</h2>
+            
+            <div style="max-width: 600px; margin: 0 auto; padding: 40px; border: 3px solid #667eea; border-radius: 20px; background: #f8f9fa;">
+                <h3 style="color: #667eea; margin-bottom: 2rem;">ChuckOS Early Access License</h3>
+                
+                <div style="font-size: 3rem; color: #FF6B6B; font-weight: 800; margin: 1rem 0;">$299</div>
+                <p style="text-decoration: line-through; opacity: 0.6;">Regular Price: $999</p>
+                <p style="color: #28a745; font-weight: 600; margin-bottom: 2rem;">Save $700 - Early Access Only</p>
+                
+                <ul style="text-align: left; margin: 2rem 0;">
+                    <li>✅ Complete ChuckOS installation</li>
+                    <li>✅ Jaymi AI assistant with personality</li>
+                    <li>✅ Natural language file management</li>
+                    <li>✅ Voice interface and system control</li>
+                    <li>✅ Lifetime updates and support</li>
+                    <li>✅ Direct access to Chuck (creator)</li>
+                </ul>
+                
+                <a href="https://buy.stripe.com/your-payment-link" class="cta-button" style="width: 100%; display: block; text-align: center; margin-top: 2rem;">
+                    BUY NOW - $299
+                </a>
+                
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">
+                    30-day money-back guarantee • Secure payment by Stripe
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Charles E Drain. ChuckOS is a trademark of Charles E Drain.</p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/chuckfs/chuckOS-MVP" style="color: #667eea;">GitHub</a> • 
+                <a href="mailto:chuck@chuckos.com" style="color: #667eea;">Contact</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + (3 * 24 * 60 * 60 * 1000); // 3 days from now
+            
+            setInterval(() => {
+                const currentTime = new Date().getTime();
+                const timeLeft = endTime - currentTime;
+                
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('countdown-timer').innerHTML = 
+                    `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft < 0) {
+                    document.getElementById('countdown-timer').innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        }
+        
+        updateCountdown();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
