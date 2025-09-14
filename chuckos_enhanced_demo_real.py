@@ -105,7 +105,7 @@ class EnhancedChuckOSDemo:
             if search_dir.exists():
                 for ext in extensions:
                     for f in search_dir.rglob(f"*{ext}"): 
-                    if f.stat().st_size > 0: found_files.append(f)
+                        if f.stat().st_size > 0: found_files.append(f)
         
         if found_files:
             print("📸 Enhanced Photo Analysis:")

@@ -551,7 +551,8 @@ class JaymiSystemIntegration:
                 timestamp = datetime.fromisoformat(opt["timestamp"])
                 print(f"   {timestamp.strftime('%b %d %H:%M')}: {len(opt['tasks'])} tasks")
         
-        self.speak(f"System history shows {len(history)} performance records with an average health score of {avg_health:.0f if "avg_health" in locals() else 0} out of 100.")
+        avg_health = sum(h.get('health_score', 0) for h in history) / len(history) if history else 0
+        self.speak(f"System history shows {len(history)} performance records with an average health score of {avg_health:.0f} out of 100.")
     
     def interactive_system_control(self):
         """Interactive system control interface"""
